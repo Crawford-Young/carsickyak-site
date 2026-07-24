@@ -51,7 +51,7 @@ async function getAppToken(): Promise<string> {
     client_secret: env.TWITCH_CLIENT_SECRET,
     grant_type: 'client_credentials',
   })
-  const res = await fetch(`${TOKEN_URL}?${params}`, { method: 'POST', cache: 'no-store' })
+  const res = await fetch(TOKEN_URL, { method: 'POST', body: params, cache: 'no-store' })
   if (!res.ok) throw new Error(`twitch token request failed: ${res.status}`)
   const parsed = tokenSchema.parse(await res.json())
   cachedToken = {
