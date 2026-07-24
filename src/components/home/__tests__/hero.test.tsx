@@ -26,6 +26,13 @@ describe('Hero', () => {
     expect(photo).not.toHaveAttribute('loading', 'lazy')
   })
 
+  it('marks the hero photo fetchpriority high so Lighthouse sees the LCP preload hint', () => {
+    const { container } = render(<Hero />)
+
+    const photo = container.querySelector('img[src*="cy-photo-ridgeline-sunrise"]')
+    expect(photo).toHaveAttribute('fetchpriority', 'high')
+  })
+
   it('overlays a scrim between the photo and the foreground text', () => {
     const { container } = render(<Hero />)
 
