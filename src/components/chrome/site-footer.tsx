@@ -2,7 +2,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 import { copy } from '@/lib/copy'
-import { TWITCH_CHANNEL_URL } from '@/lib/links'
+import { TWITCH_CHANNEL_URL, YOUTUBE_CHANNEL_URL } from '@/lib/links'
 import { Separator } from '@/lib/ui'
 
 const WATERMARK_SIZE_PX = 64
@@ -15,7 +15,7 @@ interface SocialLink {
 
 const SOCIALS: readonly SocialLink[] = [
   { label: 'twitch', href: TWITCH_CHANNEL_URL },
-  { label: 'youtube', href: 'https://www.youtube.com/@CarsickYak' },
+  { label: 'youtube', href: YOUTUBE_CHANNEL_URL },
   { label: 'instagram', href: 'https://www.instagram.com/carsickyak/' },
   { label: 'tiktok', href: 'https://www.tiktok.com/@carsick_yak' },
   { label: 'threads', href: 'https://www.threads.net/@carsickyak' },
