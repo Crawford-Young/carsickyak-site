@@ -19,7 +19,7 @@ lint:
 typecheck:
     pnpm tsc --noEmit
 
-check: lint typecheck test e2e
+check: lint typecheck test storybook-build e2e
 
 storybook:
     pnpm exec storybook dev -p 6006
