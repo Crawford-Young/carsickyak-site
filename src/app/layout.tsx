@@ -54,6 +54,7 @@ export default function RootLayout({
       className={`${inter.variable} ${fraunces.variable} ${jetBrainsMono.variable} theme-carsickyak h-full antialiased`}
     >
       <body className="bg-background text-foreground flex min-h-full flex-col font-sans">
+        <link rel="preconnect" href="https://i.ytimg.com" />
         <ThemeProvider
           attribute="class"
           defaultTheme="light"
