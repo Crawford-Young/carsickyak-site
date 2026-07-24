@@ -3,10 +3,10 @@
 import { useEffect, useState } from 'react'
 
 import { copy } from '@/lib/copy'
+import { TWITCH_CHANNEL_URL } from '@/lib/links'
 import type { LiveStatus } from '@/lib/twitch'
 
 const POLL_INTERVAL_MS = 60_000
-const TWITCH_CHANNEL_URL = 'https://twitch.tv/carsickyak'
 
 interface LiveBadgeProps {
   readonly initialStatus: LiveStatus
