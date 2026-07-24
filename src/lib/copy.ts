@@ -26,6 +26,17 @@ export const copy = {
     socials: 'everywhere else',
   },
   about: {
+    // provisional — not yak-voice gated; user reviews at QA
+    pageTitle: 'about',
+    bio: {
+      name: 'CarsickYak',
+      tagline: 'Gamer, Coder, Philosopher, Writer, Outdoorsman, Musician, Athlete, Nerd',
+      line: 'Ranked grinder, but not taking it too seriously.',
+    },
+    quote: {
+      text: 'In the midst of winter I found there was within me an invincible summer.',
+      attribution: 'Albert Camus',
+    },
     philosophy: 'Show up and let it play out.',
     ranked: {
       heading: 'ranked grinder',
@@ -40,8 +51,22 @@ export const copy = {
     intro: 'A challenge where I try to reach my peak rank in games I used to be good at.',
     motto: 'Consistency > everything.',
   },
+  // provisional — not yak-voice gated; user reviews at QA
+  yak2peakLadder: {
+    pageTitle: 'yak2peak',
+    doneHeading: 'done',
+    doingHeading: 'doing',
+    queuedHeading: 'queued',
+    goalPrefix: 'goal',
+  },
   covers: {
     intro: 'folk songs and chill.',
+    // provisional — not yak-voice gated; user reviews at QA
+    pageTitle: 'covers',
+    // provisional — not yak-voice gated; user reviews at QA
+    empty: 'No covers up yet — more coming soon.',
+    // provisional — not yak-voice gated; user reviews at QA
+    emptyCta: 'watch the channel on YouTube',
   },
   footer: {
     attribution: 'made by Crawford Young',
