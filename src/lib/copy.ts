@@ -11,6 +11,14 @@ export const copy = {
   live: {
     liveLabel: 'live — come hang',
     offlineLabel: 'offline — back soon',
+    // provisional — not yak-voice gated; user reviews at QA
+    watchCta: 'watch now on Twitch',
+  },
+  // provisional — not yak-voice gated; user reviews at QA
+  yak2peakTeaser: {
+    latestDone: 'latest peak',
+    nextUp: 'next up',
+    goalPrefix: 'goal:',
   },
   sections: {
     latestVideos: 'latest videos',

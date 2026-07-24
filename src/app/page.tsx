@@ -1,14 +1,19 @@
-import Image from 'next/image'
+import { ContentStrip } from '@/components/home/content-strip'
+import { Hero } from '@/components/home/hero'
+import { LiveBand } from '@/components/home/live-band'
+import { Yak2PeakTeaser } from '@/components/home/yak2peak-teaser'
+import { ranks } from '@/lib/ranks'
+import { getLiveStatus } from '@/lib/twitch'
+import { getLatestVideos } from '@/lib/youtube'
 
-export default function HomePage(): React.JSX.Element {
+export default async function HomePage(): Promise<React.JSX.Element> {
+  const [status, videos] = await Promise.all([getLiveStatus(), getLatestVideos()])
   return (
-    <main className="mx-auto flex min-h-full max-w-3xl flex-col items-center justify-center gap-6 px-6 py-24 text-center">
-      <Image src="/brand/cy-mark.svg" alt="CarsickYak mark" width={96} height={96} priority />
-      <h1 className="font-serif text-5xl font-semibold tracking-tight">CarsickYak</h1>
-      <p className="text-muted-foreground max-w-prose text-lg">
-        Ranked grinder and folk outdoorsman. The hub site is under construction.
-      </p>
-      <p className="text-ember font-medium">Coming soon.</p>
+    <main className="flex flex-col pb-12">
+      <Hero />
+      <LiveBand status={status} latestVideo={videos[0]} />
+      <ContentStrip videos={videos} />
+      <Yak2PeakTeaser ranks={ranks} />
     </main>
   )
 }
