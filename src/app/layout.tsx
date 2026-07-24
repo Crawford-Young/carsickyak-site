@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Inter, Fraunces, JetBrains_Mono } from 'next/font/google'
+import { Inter, Fraunces } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 
@@ -17,11 +17,6 @@ const inter = Inter({
 
 const fraunces = Fraunces({
   variable: '--font-serif',
-  subsets: ['latin'],
-})
-
-const jetBrainsMono = JetBrains_Mono({
-  variable: '--font-mono',
   subsets: ['latin'],
 })
 
@@ -51,7 +46,7 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${inter.variable} ${fraunces.variable} ${jetBrainsMono.variable} theme-carsickyak h-full antialiased`}
+      className={`${inter.variable} ${fraunces.variable} theme-carsickyak h-full antialiased`}
     >
       <body className="bg-background text-foreground flex min-h-full flex-col font-sans">
         <link rel="preconnect" href="https://i.ytimg.com" />

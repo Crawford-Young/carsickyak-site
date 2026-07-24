@@ -10,7 +10,7 @@ built on the `@crawfordyoung/ui` carsickyak theme preset.
 - **Language:** TypeScript (strict)
 - **Styling:** Tailwind CSS v4 (`@config` pattern) + `@crawfordyoung/ui` carsickyak theme
 - **Theme:** light-first (`next-themes`, `defaultTheme="light"`), full dark mode via `.dark`
-- **Fonts:** `next/font` — Inter (sans), Fraunces (serif), JetBrains Mono (mono)
+- **Fonts:** `next/font` — Inter (sans), Fraunces (serif)
 - **Validation:** Zod at all boundaries; `t3-env` validates env at startup
 - **Testing:** Vitest (100% coverage) + MSW · Playwright e2e · Storybook
 - **Observability:** Pino logging · Sentry error monitoring · Vercel Analytics + Speed Insights
