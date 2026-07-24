@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react'
 
+import { copy } from '@/lib/copy'
 import type { LiveStatus } from '@/lib/twitch'
 
 const POLL_INTERVAL_MS = 60_000
@@ -27,7 +28,7 @@ export function LiveBadge({ initialStatus }: LiveBadgeProps): React.JSX.Element 
   }, [])
 
   if (!status.live) {
-    return <span className="text-muted-foreground">Offline</span>
+    return <span className="text-muted-foreground">{copy.live.offlineLabel}</span>
   }
   return (
     <a
@@ -37,7 +38,7 @@ export function LiveBadge({ initialStatus }: LiveBadgeProps): React.JSX.Element 
       target="_blank"
     >
       <span aria-hidden className="bg-ember size-2 animate-pulse rounded-full" />
-      LIVE — watch on Twitch
+      {copy.live.liveLabel}
     </a>
   )
 }

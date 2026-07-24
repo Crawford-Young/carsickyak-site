@@ -2,6 +2,7 @@ import { act, render, screen } from '@testing-library/react'
 import { afterEach, describe, expect, it, vi } from 'vitest'
 
 import { LiveBadge } from '@/components/live/live-badge'
+import { copy } from '@/lib/copy'
 import type { LiveStatus } from '@/lib/twitch'
 
 const TWITCH_CHANNEL_URL = 'https://twitch.tv/carsickyak'
@@ -24,7 +25,7 @@ describe('LiveBadge', () => {
 
     const link = screen.getByRole('link', { name: /live/i })
     expect(link).toHaveAttribute('href', TWITCH_CHANNEL_URL)
-    expect(link).toHaveTextContent(/live/i)
+    expect(link).toHaveTextContent(copy.live.liveLabel)
     const dot = link.querySelector('[aria-hidden]')
     expect(dot).toHaveClass('bg-ember')
   })
@@ -34,7 +35,7 @@ describe('LiveBadge', () => {
 
     render(<LiveBadge initialStatus={status} />)
 
-    expect(screen.getByText('Offline')).toBeInTheDocument()
+    expect(screen.getByText(copy.live.offlineLabel)).toBeInTheDocument()
     expect(screen.queryByRole('link')).not.toBeInTheDocument()
   })
 
@@ -56,7 +57,7 @@ describe('LiveBadge', () => {
     const initialStatus: LiveStatus = { live: false }
     render(<LiveBadge initialStatus={initialStatus} />)
 
-    expect(screen.getByText('Offline')).toBeInTheDocument()
+    expect(screen.getByText(copy.live.offlineLabel)).toBeInTheDocument()
 
     await act(async () => {
       await vi.advanceTimersByTimeAsync(60_000)
@@ -80,7 +81,7 @@ describe('LiveBadge', () => {
     })
 
     expect(fetchMock).toHaveBeenCalledWith('/api/live')
-    expect(screen.getByText('Offline')).toBeInTheDocument()
+    expect(screen.getByText(copy.live.offlineLabel)).toBeInTheDocument()
   })
 
   it('stays offline when the poll fetch rejects', async () => {
@@ -97,6 +98,6 @@ describe('LiveBadge', () => {
     })
 
     expect(fetchMock).toHaveBeenCalledWith('/api/live')
-    expect(screen.getByText('Offline')).toBeInTheDocument()
+    expect(screen.getByText(copy.live.offlineLabel)).toBeInTheDocument()
   })
 })
