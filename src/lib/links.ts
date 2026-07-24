@@ -4,3 +4,4 @@
  * import from client and server components alike.
  */
 export const TWITCH_CHANNEL_URL = 'https://twitch.tv/carsickyak'
+export const YOUTUBE_CHANNEL_URL = 'https://www.youtube.com/@CarsickYak'
