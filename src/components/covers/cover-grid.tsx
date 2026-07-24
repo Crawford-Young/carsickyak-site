@@ -8,6 +8,8 @@ interface CoverGridProps {
   readonly videos: readonly VideoSummary[]
 }
 
+const ABOVE_FOLD_THUMBNAIL_COUNT = 4
+
 /**
  * This page's whole content IS the feed (unlike the home teaser strip), so
  * an empty feed renders a quiet empty state with a channel link instead of
@@ -32,7 +34,7 @@ export function CoverGrid({ videos }: CoverGridProps): React.JSX.Element {
 
   return (
     <ul className="mt-12 grid gap-8 sm:grid-cols-2">
-      {videos.map((video) => (
+      {videos.map((video, index) => (
         <li key={video.videoId}>
           <article className="border-border/60 group overflow-hidden rounded-lg border transition-colors">
             <a
@@ -47,6 +49,7 @@ export function CoverGrid({ videos }: CoverGridProps): React.JSX.Element {
                   alt=""
                   fill
                   unoptimized
+                  priority={index < ABOVE_FOLD_THUMBNAIL_COUNT}
                   sizes="(min-width: 640px) 45vw, 90vw"
                   className="object-cover transition-transform group-hover:scale-105"
                 />

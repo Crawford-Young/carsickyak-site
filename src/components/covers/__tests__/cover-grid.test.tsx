@@ -53,6 +53,18 @@ describe('CoverGrid', () => {
     expect(thumb.getAttribute('src')).toMatch(/^https:\/\/i\.ytimg\.com/)
   })
 
+  it('eagerly loads the first 4 above-fold thumbnails and lazy-loads the rest', () => {
+    render(<CoverGrid videos={makeVideos(5)} />)
+
+    const links = screen.getAllByRole('link')
+    const thumbs = links.map((link) => within(link).getByAltText(''))
+
+    thumbs.slice(0, 4).forEach((thumb) => {
+      expect(thumb).not.toHaveAttribute('loading', 'lazy')
+    })
+    expect(thumbs[4]).toHaveAttribute('loading', 'lazy')
+  })
+
   it('has no accessibility violations when populated', async () => {
     const { container } = render(<CoverGrid videos={makeVideos(3)} />)
 
