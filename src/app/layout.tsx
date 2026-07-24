@@ -4,7 +4,10 @@ import { Analytics } from '@vercel/analytics/next'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 
 import './globals.css'
+import { SiteFooter } from '@/components/chrome/site-footer'
+import { SiteNav } from '@/components/chrome/site-nav'
 import { ThemeProvider } from '@/components/providers/theme-provider'
+import { copy } from '@/lib/copy'
 import { env } from '@/env'
 
 const inter = Inter({
@@ -28,10 +31,10 @@ export const metadata: Metadata = {
     default: 'CarsickYak',
     template: '%s · CarsickYak',
   },
-  description: 'CarsickYak — ranked grinder and folk outdoorsman.',
+  description: copy.meta.home,
   openGraph: {
     title: 'CarsickYak',
-    description: 'CarsickYak — ranked grinder and folk outdoorsman.',
+    description: copy.meta.home,
     url: '/',
     siteName: 'CarsickYak',
     images: ['/og.png'],
@@ -57,7 +60,9 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          {children}
+          <SiteNav />
+          <div className="flex-1">{children}</div>
+          <SiteFooter />
         </ThemeProvider>
         <Analytics />
         <SpeedInsights />
