@@ -26,12 +26,6 @@ describe('Yak2PeakPage', () => {
     expect(screen.getByText('Valorant')).toBeInTheDocument()
   })
 
-  it('renders the motto', () => {
-    render(<Yak2PeakPage />)
-
-    expect(screen.getByText(copy.yak2peak.motto)).toBeInTheDocument()
-  })
-
   it('exposes page metadata from the gated copy source', () => {
     expect(metadata.title).toBe(copy.yak2peakLadder.pageTitle)
     expect(metadata.description).toBe(copy.meta.yak2peak)

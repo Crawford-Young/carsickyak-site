@@ -51,7 +51,6 @@ export const copy = {
   },
   yak2peak: {
     intro: 'A challenge where I try to reach my peak rank in games I used to be good at.',
-    motto: 'Consistency > everything.',
   },
   // provisional — not yak-voice gated; user reviews at QA
   yak2peakLadder: {

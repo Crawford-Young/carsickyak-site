@@ -17,9 +17,6 @@ export default function Yak2PeakPage(): React.JSX.Element {
       </h1>
       <p className="text-muted-foreground mt-4 max-w-2xl text-lg">{copy.yak2peak.intro}</p>
       <RankLadder ranks={ranks} />
-      <p className="text-muted-foreground mt-16 text-center text-xs font-medium tracking-[0.2em] uppercase">
-        {copy.yak2peak.motto}
-      </p>
     </main>
   )
 }
