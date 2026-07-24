@@ -1,7 +1,9 @@
 /**
- * Every user-facing string on the site, gated through the yak-voice
+ * Every user-facing string the site authors, gated through the yak-voice
  * acceptance round (W1 T8, 2026-07-24). Pages and components consume
- * from here so copy reruns touch one file.
+ * from here so copy reruns touch one file. Exception: error surfaces use
+ * `@crawfordyoung/ui` RouteErrorFallback's built-in default labels — library
+ * copy stays the library's.
  */
 export const copy = {
   hero: {
@@ -73,6 +75,8 @@ export const copy = {
   },
   notFound: {
     line: "Wrong turn. This page doesn't exist.",
+    // provisional — not yak-voice gated; user reviews at QA
+    homeLabel: 'back to home',
   },
   meta: {
     home: 'CarsickYak — gaming, folk covers, and self growth. Live on Twitch Monday, Wednesday, and Saturday.',

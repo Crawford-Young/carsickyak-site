@@ -13,4 +13,4 @@
  * Marking this re-export as a client module evaluates that barrel in the client
  * graph, where `createContext` is legal.
  */
-export { Button, Separator } from '@crawfordyoung/ui'
+export { Button, RouteErrorFallback, Separator } from '@crawfordyoung/ui'

@@ -10,6 +10,10 @@ const PLAYLIST_ITEMS_URL = 'https://www.googleapis.com/youtube/v3/playlistItems'
 const FEED_REVALIDATE_SECONDS = 3600
 const LATEST_VIDEO_COUNT = 6
 const COVERS_SCAN_COUNT = 48
+// YouTube playlistItems returns at most 50 items per page; the covers page is
+// uncapped by design, so the dedicated-playlist branch requests the page max
+// rather than the home strip's LATEST_VIDEO_COUNT cap (issue #5).
+const COVERS_FETCH_COUNT = 50
 const COVERS_TITLE_PATTERN = /cover/i
 const UPLOADS_PLAYLIST_PREFIX = 'UU'
 const CHANNEL_ID_PREFIX_LENGTH = 2
@@ -76,7 +80,7 @@ export async function getLatestVideos(): Promise<VideoSummary[]> {
 export async function getCoverVideos(): Promise<VideoSummary[]> {
   try {
     if (env.YOUTUBE_COVERS_PLAYLIST_ID) {
-      return await fetchPlaylist(env.YOUTUBE_COVERS_PLAYLIST_ID, LATEST_VIDEO_COUNT)
+      return await fetchPlaylist(env.YOUTUBE_COVERS_PLAYLIST_ID, COVERS_FETCH_COUNT)
     }
     const uploads = await fetchPlaylist(
       uploadsPlaylistId(env.YOUTUBE_CHANNEL_ID),
