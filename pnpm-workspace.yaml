@@ -1,0 +1,12 @@
+onlyBuiltDependencies:
+  - '@sentry/cli'
+  - '@tailwindcss/oxide'
+  - esbuild
+  - msw
+  - sharp
+ignoredBuiltDependencies:
+  - unrs-resolver
+overrides:
+  zod: '3'
+minimumReleaseAgeExclude:
+  - '@crawfordyoung/ui@0.29.0'

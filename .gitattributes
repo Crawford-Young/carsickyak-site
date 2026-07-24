@@ -1,0 +1,13 @@
+# Normalize all text files to LF in the repo and on checkout, regardless of
+# core.autocrlf. Without this, Windows checkout (autocrlf=true) lands files on
+# disk as CRLF, which prettier's default endOfLine flags as false "drift"
+# locally while CI (Linux, LF) stays green. eol=lf keeps local == CI.
+* text=auto eol=lf
+
+# Binary assets — never normalize.
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.ico binary
+*.woff binary
+*.woff2 binary
