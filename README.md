@@ -60,6 +60,21 @@ All commands run through `just` (see `justfile`):
 | `just storybook`       | Storybook dev server (port 6006)              |
 | `just storybook-build` | static Storybook build                        |
 
+## Updating Yak2Peak ranks
+
+Rank data ships as committed JSON — no CMS, no database.
+
+1. Edit the source of truth in the docs repo:
+   `~/code/docs/web/carsickyak/assets/yak2peak/ranks.json`
+2. Copy it byte-identical into the site: `src/data/ranks.json`
+   (both sides stay prettier-formatted — format the docs source, then copy).
+3. Run `just test` — `src/lib/ranks.ts` Zod-validates the JSON at import, so a bad
+   shape fails the suite immediately.
+4. Commit on a branch (`chore: update yak2peak ranks`), PR, merge — Vercel redeploys
+   with the new data.
+
+Entry shape: `{ game, status: "done" | "doing" | "queued", currentRank (nullable), peakGoal }`.
+
 ## Conventions
 
 - Conventional Commits, enforced by commitlint. Husky runs lint-staged (pre-commit),
