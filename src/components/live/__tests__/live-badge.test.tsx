@@ -25,6 +25,8 @@ describe('LiveBadge', () => {
     const link = screen.getByRole('link', { name: /live/i })
     expect(link).toHaveAttribute('href', TWITCH_CHANNEL_URL)
     expect(link).toHaveTextContent(/live/i)
+    const dot = link.querySelector('[aria-hidden]')
+    expect(dot).toHaveClass('bg-ember')
   })
 
   it('renders the offline state with a quiet label', () => {
