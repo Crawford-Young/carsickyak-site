@@ -1,0 +1,32 @@
+[
+  {
+    "game": "Rocket League",
+    "status": "done",
+    "currentRank": "Grand Champion",
+    "peakGoal": "Champion"
+  },
+  {
+    "game": "Overwatch",
+    "status": "done",
+    "currentRank": "Diamond",
+    "peakGoal": "Platinum"
+  },
+  {
+    "game": "Valorant",
+    "status": "queued",
+    "currentRank": null,
+    "peakGoal": "Ascendant"
+  },
+  {
+    "game": "R6 Siege",
+    "status": "queued",
+    "currentRank": null,
+    "peakGoal": "Platinum"
+  },
+  {
+    "game": "CS2",
+    "status": "queued",
+    "currentRank": null,
+    "peakGoal": "15,000 Premier"
+  }
+]
