@@ -131,6 +131,31 @@ describe('getLiveStatus', () => {
     expect(captureExceptionMock).toHaveBeenCalled()
   })
 
+  it('sends client credentials in the token request body, never the URL', async () => {
+    let capturedUrl = ''
+    let capturedBody = ''
+    server.use(
+      http.post(TOKEN_URL, async ({ request }) => {
+        capturedUrl = request.url
+        capturedBody = await request.text()
+        return HttpResponse.json({ access_token: 'tok', expires_in: 3600, token_type: 'bearer' })
+      }),
+      http.get(STREAMS_URL, () => HttpResponse.json({ data: [] })),
+    )
+
+    const getLiveStatus = await loadTwitch()
+
+    await getLiveStatus()
+
+    expect(capturedUrl).not.toContain('?')
+    expect(capturedUrl).not.toContain('client_secret')
+
+    const bodyParams = new URLSearchParams(capturedBody)
+    expect(bodyParams.get('grant_type')).toBe('client_credentials')
+    expect(bodyParams.get('client_id')).toBe('test-client-id')
+    expect(bodyParams.get('client_secret')).toBe('test-client-secret')
+  })
+
   it('caches the app token across multiple calls within the same module instance', async () => {
     let tokenCalls = 0
     server.use(
