@@ -27,7 +27,10 @@ export function Yak2PeakTeaser({ ranks }: Yak2PeakTeaserProps): React.JSX.Elemen
       </h2>
       <div className="mt-6 grid gap-5 sm:grid-cols-2">
         {latestDone ? (
-          <div className="border-border/60 rounded-lg border p-6">
+          <Link
+            href={YAK2PEAK_HREF}
+            className="border-border/60 hover:border-border rounded-lg border p-6 transition-colors"
+          >
             <p className="text-muted-foreground text-xs font-medium tracking-[0.2em] uppercase">
               {copy.yak2peakTeaser.latestDone}
             </p>
@@ -35,10 +38,13 @@ export function Yak2PeakTeaser({ ranks }: Yak2PeakTeaserProps): React.JSX.Elemen
             <p className="text-accent-subtle-foreground mt-1 font-medium">
               {latestDone.currentRank}
             </p>
-          </div>
+          </Link>
         ) : null}
         {nextQueued ? (
-          <div className="border-border/60 rounded-lg border p-6">
+          <Link
+            href={YAK2PEAK_HREF}
+            className="border-border/60 hover:border-border rounded-lg border p-6 transition-colors"
+          >
             <p className="text-muted-foreground text-xs font-medium tracking-[0.2em] uppercase">
               {copy.yak2peakTeaser.nextUp}
             </p>
@@ -46,15 +52,9 @@ export function Yak2PeakTeaser({ ranks }: Yak2PeakTeaserProps): React.JSX.Elemen
             <p className="text-muted-foreground mt-1">
               {copy.yak2peakTeaser.goalPrefix} {nextQueued.peakGoal}
             </p>
-          </div>
+          </Link>
         ) : null}
       </div>
-      <Link
-        href={YAK2PEAK_HREF}
-        className="text-muted-foreground hover:text-foreground mt-6 inline-block text-sm font-medium underline-offset-4 transition-colors hover:underline"
-      >
-        {copy.yak2peak.motto}
-      </Link>
     </section>
   )
 }

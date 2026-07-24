@@ -50,12 +50,7 @@ export default function RootLayout({
     >
       <body className="bg-background text-foreground flex min-h-full flex-col font-sans">
         <link rel="preconnect" href="https://i.ytimg.com" />
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="light"
-          enableSystem
-          disableTransitionOnChange
-        >
+        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
           <SiteNav />
           <div className="flex-1">{children}</div>
           <SiteFooter />

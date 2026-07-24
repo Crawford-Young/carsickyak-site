@@ -36,10 +36,20 @@ describe('Yak2PeakTeaser', () => {
     expect(screen.getByText(`${copy.yak2peakTeaser.goalPrefix} Ascendant`)).toBeInTheDocument()
   })
 
-  it('links through to the full yak2peak page', () => {
+  it('wraps both teaser cards in links to the full yak2peak page', () => {
     render(<Yak2PeakTeaser ranks={RANKS} />)
 
-    expect(screen.getByRole('link')).toHaveAttribute('href', '/yak2peak')
+    const links = screen.getAllByRole('link')
+    expect(links).toHaveLength(2)
+    links.forEach((link) => {
+      expect(link).toHaveAttribute('href', '/yak2peak')
+    })
+  })
+
+  it('does not render the removed motto text', () => {
+    render(<Yak2PeakTeaser ranks={RANKS} />)
+
+    expect(screen.queryByText('Consistency > everything.')).not.toBeInTheDocument()
   })
 
   it('omits the completed feature when nothing is done yet', () => {

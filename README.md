@@ -9,7 +9,7 @@ built on the `@crawfordyoung/ui` carsickyak theme preset.
 - **Framework:** Next.js (App Router) — Server Components by default
 - **Language:** TypeScript (strict)
 - **Styling:** Tailwind CSS v4 (`@config` pattern) + `@crawfordyoung/ui` carsickyak theme
-- **Theme:** light-first (`next-themes`, `defaultTheme="light"`), full dark mode via `.dark`
+- **Theme:** dark-first (`next-themes`, `defaultTheme="dark"`), full light mode without `.dark`
 - **Fonts:** `next/font` — Inter (sans), Fraunces (serif)
 - **Validation:** Zod at all boundaries; `t3-env` validates env at startup
 - **Testing:** Vitest (100% coverage) + MSW · Playwright e2e · Storybook
