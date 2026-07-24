@@ -32,7 +32,9 @@ export function Yak2PeakTeaser({ ranks }: Yak2PeakTeaserProps): React.JSX.Elemen
               {copy.yak2peakTeaser.latestDone}
             </p>
             <p className="mt-2 font-serif text-xl font-semibold">{latestDone.game}</p>
-            <p className="text-ember mt-1 font-medium">{latestDone.currentRank}</p>
+            <p className="text-accent-subtle-foreground mt-1 font-medium">
+              {latestDone.currentRank}
+            </p>
           </div>
         ) : null}
         {nextQueued ? (

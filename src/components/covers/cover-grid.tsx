@@ -22,7 +22,7 @@ export function CoverGrid({ videos }: CoverGridProps): React.JSX.Element {
           href={YOUTUBE_CHANNEL_URL}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-foreground underline-offset-4 hover:underline"
+          className="text-foreground underline underline-offset-4"
         >
           {copy.covers.emptyCta}
         </a>

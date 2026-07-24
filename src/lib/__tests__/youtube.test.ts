@@ -165,13 +165,15 @@ describe('getLatestVideos', () => {
 })
 
 describe('getCoverVideos', () => {
-  it('fetches the configured covers playlist when YOUTUBE_COVERS_PLAYLIST_ID is set', async () => {
+  it('fetches the configured covers playlist uncapped when YOUTUBE_COVERS_PLAYLIST_ID is set', async () => {
     stubYoutubeEnv(COVERS_PLAYLIST_ID)
     let requestedPlaylistId: string | null = null
+    let requestedMaxResults: string | null = null
     server.use(
       http.get(PLAYLIST_ITEMS_URL, ({ request }) => {
         const url = new URL(request.url)
         requestedPlaylistId = url.searchParams.get('playlistId')
+        requestedMaxResults = url.searchParams.get('maxResults')
         return HttpResponse.json({
           items: [
             snippetItem({
@@ -197,6 +199,9 @@ describe('getCoverVideos', () => {
       },
     ])
     expect(requestedPlaylistId).toBe(COVERS_PLAYLIST_ID)
+    // The covers page is uncapped by design; the dedicated playlist branch must
+    // request the YouTube page maximum, not the home strip's 6-item cap (issue #5).
+    expect(requestedMaxResults).toBe('50')
   })
 
   it('falls back to scanning the uploads playlist and filtering by title when unset', async () => {

@@ -63,6 +63,9 @@ importers:
         specifier: '3'
         version: 3.25.76
     devDependencies:
+      '@axe-core/playwright':
+        specifier: ^4.12.1
+        version: 4.12.1(playwright-core@1.61.1)
       '@chromatic-com/storybook':
         specifier: ^5.2.1
         version: 5.2.1(storybook@10.5.4(@types/react@19.2.17)(prettier@3.9.6)(react@19.2.4))
@@ -206,6 +209,11 @@ packages:
 
   '@apm-js-collab/tracing-hooks@0.13.0':
     resolution: {integrity: sha512-mTvWz9rnQwx1U3h0XPTHaX7bgfkpipLLTQyjlC2cdhQpQEuoLT0AGzoydeoq2NxfEVv6fWOOETcSbb2nptleyw==}
+
+  '@axe-core/playwright@4.12.1':
+    resolution: {integrity: sha512-rMd7xriptqKpP+w5265i4Hdkv2X5kbu6uiBi/B2I7uf3hieRBM3qDCfaKPtxfiYb2mKXfF+yLODJwIx+Jv1GDw==}
+    peerDependencies:
+      playwright-core: '>= 1.0.0'
 
   '@babel/code-frame@7.29.7':
     resolution: {integrity: sha512-Aup7aUOfpbAUg2ROOJN6Iw5f9DMBlzu0mIkm/malLQFN/YQgO48wCj0Kxa3sEHJvPVFg7siR+qRInwXd2qhQKw==}
@@ -6081,6 +6089,11 @@ snapshots:
       module-details-from-path: 1.0.4
     transitivePeerDependencies:
       - supports-color
+
+  '@axe-core/playwright@4.12.1(playwright-core@1.61.1)':
+    dependencies:
+      axe-core: 4.12.1
+      playwright-core: 1.61.1
 
   '@babel/code-frame@7.29.7':
     dependencies:
