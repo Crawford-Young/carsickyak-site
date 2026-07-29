@@ -63,7 +63,12 @@ export function SiteFooter(): React.JSX.Element {
 
         <Separator className="max-w-xs" />
 
-        <p className="text-muted-foreground text-sm">
+        {/*
+          The privacy link sits in this paragraph rather than its own <nav>: a
+          second navigation landmark in one footer is an axe smell and breaks
+          strict-mode getByRole('navigation') in the e2e suite.
+        */}
+        <p className="text-muted-foreground flex items-center gap-4 text-sm">
           <Link
             href={PORTFOLIO_URL}
             target="_blank"
@@ -71,6 +76,12 @@ export function SiteFooter(): React.JSX.Element {
             className="hover:text-foreground underline-offset-4 transition-colors hover:underline"
           >
             {copy.footer.attribution}
+          </Link>
+          <Link
+            href="/privacy"
+            className="hover:text-foreground underline-offset-4 transition-colors hover:underline"
+          >
+            {copy.footer.privacyLabel}
           </Link>
         </p>
       </div>

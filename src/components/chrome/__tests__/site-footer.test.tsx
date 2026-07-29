@@ -44,6 +44,15 @@ describe('SiteFooter', () => {
     expect(persona).toHaveAttribute('href', 'https://crawfordyoung.dev')
   })
 
+  it('links to the privacy policy so it is not a crawl orphan', () => {
+    render(<SiteFooter />)
+
+    expect(screen.getByRole('link', { name: copy.footer.privacyLabel })).toHaveAttribute(
+      'href',
+      '/privacy',
+    )
+  })
+
   it('has no accessibility violations', async () => {
     const { container } = render(<SiteFooter />)
 
