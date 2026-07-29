@@ -2,8 +2,10 @@ import { defineConfig, devices } from '@playwright/test'
 
 // Port is configurable so concurrent sessions can run e2e on a fresh port without
 // reusing another session's dev server. `next dev` reads PORT from the env itself.
+// E2E_BASE_URL overrides both, so the compliance spec can run against the live
+// deployment (W6 production sweep) instead of a local server.
 const PORT = process.env.PORT ?? '3000'
-const BASE_URL = `http://localhost:${PORT}`
+const BASE_URL = process.env.E2E_BASE_URL ?? `http://localhost:${PORT}`
 
 export default defineConfig({
   testDir: './tests/e2e',

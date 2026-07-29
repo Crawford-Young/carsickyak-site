@@ -8,7 +8,7 @@ import { SiteFooter } from '@/components/chrome/site-footer'
 import { SiteNav } from '@/components/chrome/site-nav'
 import { ThemeProvider } from '@/components/providers/theme-provider'
 import { copy } from '@/lib/copy'
-import { env } from '@/env'
+import { SITE_URL } from '@/lib/site-routes'
 
 const inter = Inter({
   variable: '--font-sans',
@@ -21,7 +21,11 @@ const fraunces = Fraunces({
 })
 
 export const metadata: Metadata = {
-  metadataBase: new URL(env.NEXT_PUBLIC_APP_URL),
+  // Pinned to the constant, not env.NEXT_PUBLIC_APP_URL: that var carried
+  // http://localhost:3000 in Vercel, so every deployed page advertised a
+  // localhost canonical origin. Same reasoning as src/lib/site-routes.ts —
+  // a canonical URL is a published fact about the host, not a per-env knob.
+  metadataBase: new URL(SITE_URL),
   title: {
     default: 'CarsickYak',
     template: '%s · CarsickYak',
