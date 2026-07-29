@@ -6,7 +6,7 @@ import { expect, test } from '@playwright/test'
 // stays correct regardless of the app's default theme. RSC content is
 // state-dependent (dummy-cred fallbacks under the Playwright web server) —
 // the scan covers whatever renders, which is the correct surface.
-const PAGE_PATHS = ['/', '/yak2peak', '/about', '/covers'] as const
+const PAGE_PATHS = ['/', '/yak2peak', '/about', '/covers', '/privacy'] as const
 
 for (const path of PAGE_PATHS) {
   test(`has no axe violations on ${path} in light theme`, async ({ page }) => {
