@@ -1,11 +1,19 @@
 onlyBuiltDependencies:
-  - '@sentry/cli'
   - '@tailwindcss/oxide'
   - esbuild
   - msw
   - sharp
 ignoredBuiltDependencies:
   - unrs-resolver
+# pnpm 11 reads allowBuilds instead of the two lists above and fails install
+# with ERR_PNPM_IGNORED_BUILDS on anything unlisted (claude-config#364). Keep
+# both in step until the repo moves to pnpm 11.
+allowBuilds:
+  '@tailwindcss/oxide': true
+  esbuild: true
+  msw: true
+  sharp: true
+  unrs-resolver: false
 overrides:
   # GHSA-mrhx-c7xc-m3w5: keep a single patched zod 4 across t3-env.
   zod: 4.6.7
@@ -13,10 +21,10 @@ overrides:
   # GHSA-6g55-p6wh-862q, GHSA-r28c-9q8g-f849). Remove when next's ranges catch up.
   postcss: 8.5.23
   sharp: 0.35.5
-  # Transitive via @sentry/nextjs > webpack > minimizer-webpack-plugin: fast-uri
-  # (GHSA-7p8r-x3mc-p8w7, GHSA-5jgf-p345-68v8, GHSA-f65p-4m7j-42xc, GHSA-fph4-wmhf-6fwf,
-  # GHSA-jqff-g426-hqxp, GHSA-qw65-cvwx-89v3) and nanoid (GHSA-2v37-7h3g-55p8).
-  # Remove when the webpack chain resolves patched versions on its own.
+  # Transitive fast-uri (ajv, via @commitlint) (GHSA-7p8r-x3mc-p8w7, GHSA-5jgf-p345-68v8,
+  # GHSA-f65p-4m7j-42xc, GHSA-fph4-wmhf-6fwf, GHSA-jqff-g426-hqxp, GHSA-qw65-cvwx-89v3) and
+  # nanoid (GHSA-2v37-7h3g-55p8). The webpack chain that also pulled them in left with
+  # @sentry/nextjs. Remove when the remaining chains resolve patched versions on their own.
   fast-uri: 3.1.9
   nanoid: 3.3.20
 minimumReleaseAgeExclude:

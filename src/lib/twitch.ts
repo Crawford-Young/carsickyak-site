@@ -1,6 +1,5 @@
 import 'server-only'
 
-import * as Sentry from '@sentry/nextjs'
 import { z } from 'zod'
 
 import { env } from '@/env'
@@ -80,7 +79,6 @@ export async function getLiveStatus(): Promise<LiveStatus> {
     }
   } catch (error) {
     logger.error({ error }, 'getLiveStatus failed')
-    Sentry.captureException(error)
     return { live: false }
   }
 }

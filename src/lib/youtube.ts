@@ -1,6 +1,5 @@
 import 'server-only'
 
-import * as Sentry from '@sentry/nextjs'
 import { z } from 'zod'
 
 import { env } from '@/env'
@@ -72,7 +71,6 @@ export async function getLatestVideos(): Promise<VideoSummary[]> {
     return await fetchPlaylist(uploadsPlaylistId(env.YOUTUBE_CHANNEL_ID), LATEST_VIDEO_COUNT)
   } catch (error) {
     logger.error({ error }, 'getLatestVideos failed')
-    Sentry.captureException(error)
     return []
   }
 }
@@ -89,7 +87,6 @@ export async function getCoverVideos(): Promise<VideoSummary[]> {
     return uploads.filter((video) => COVERS_TITLE_PATTERN.test(video.title))
   } catch (error) {
     logger.error({ error }, 'getCoverVideos failed')
-    Sentry.captureException(error)
     return []
   }
 }

@@ -1,0 +1,38 @@
+# Firebase App Hosting (Cloud Run underneath). Prep for the GCP move: Vercel
+# keeps deploying until the cutover, and nothing here affects it.
+# Schema: https://firebase.google.com/docs/app-hosting/configure
+#
+# src/env.ts (t3-env) validates every required var at build AND at runtime, so
+# each one below is available in both phases.
+
+runConfig:
+  # Scale to zero between visits; a cold start costs one slow first request.
+  minInstances: 0
+  maxInstances: 4
+  concurrency: 80
+  cpu: 1
+  memoryMiB: 512
+
+env:
+  # Secrets: create each with `firebase apphosting:secrets:set <name>`.
+  - variable: TWITCH_CLIENT_ID
+    secret: twitch-client-id
+    availability: [BUILD, RUNTIME]
+  - variable: TWITCH_CLIENT_SECRET
+    secret: twitch-client-secret
+    availability: [BUILD, RUNTIME]
+  - variable: YOUTUBE_API_KEY
+    secret: youtube-api-key
+    availability: [BUILD, RUNTIME]
+  # Public, but kept in Secret Manager with the other YouTube config so this
+  # file never carries a placeholder that would pass validation.
+  - variable: YOUTUBE_CHANNEL_ID
+    secret: youtube-channel-id
+    availability: [BUILD, RUNTIME]
+
+  # Validated as a URL but no longer drives metadataBase (pinned to SITE_URL in
+  # src/lib/site-routes.ts). Set it to the public origin, never localhost.
+  - variable: NEXT_PUBLIC_APP_URL
+    value: 'https://carsickyak.crawfordyoung.dev'
+    availability: [BUILD, RUNTIME]
+  # Optional YOUTUBE_COVERS_PLAYLIST_ID: unset means covers are found by title.
