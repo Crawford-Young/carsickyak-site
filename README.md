@@ -13,7 +13,7 @@ built on the `@crawfordyoung/ui` carsickyak theme preset.
 - **Fonts:** `next/font` — Inter (sans), Fraunces (serif)
 - **Validation:** Zod at all boundaries; `t3-env` validates env at startup
 - **Testing:** Vitest (100% coverage) + MSW · Playwright e2e · Storybook
-- **Observability:** Pino logging · Sentry error monitoring · Vercel Analytics + Speed Insights
+- **Observability:** Pino logging (JSON to stdout, so Cloud Logging on GCP) · Vercel Analytics + Speed Insights
 - **Deploy:** Vercel
 
 There is **no database, no auth, and no rate limiting** in v1 — the site reads
@@ -39,7 +39,6 @@ full list with obtain-instructions. Summary:
 | `YOUTUBE_API_KEY`                           | video feeds                | Google Cloud console, YouTube Data API v3 enabled                |
 | `YOUTUBE_CHANNEL_ID`                        | the @CarsickYak channel id | `GET youtube/v3/channels?forHandle=CarsickYak&part=id&key=<key>` |
 | `YOUTUBE_COVERS_PLAYLIST_ID`                | optional covers playlist   | YouTube Studio (optional)                                        |
-| `SENTRY_DSN`                                | error monitoring           | Sentry project settings (optional locally)                       |
 | `NEXT_PUBLIC_APP_URL`                       | base URL for metadata/OG   | `http://localhost:3000` locally                                  |
 
 `.env.local` is gitignored and never committed.

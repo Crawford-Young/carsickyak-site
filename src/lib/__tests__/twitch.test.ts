@@ -13,14 +13,9 @@ const STREAMS_URL = 'https://api.twitch.tv/helix/streams'
 // twitch.ts's internal import and the test's assertions target different
 // instances.
 const loggerErrorMock = vi.fn()
-const captureExceptionMock = vi.fn()
 
 vi.mock('@/lib/logger', () => ({
   logger: { error: loggerErrorMock },
-}))
-
-vi.mock('@sentry/nextjs', () => ({
-  captureException: captureExceptionMock,
 }))
 
 function stubTwitchEnv(): void {
@@ -40,7 +35,6 @@ async function loadTwitch(): Promise<typeof GetLiveStatusFn> {
 beforeEach(() => {
   stubTwitchEnv()
   loggerErrorMock.mockClear()
-  captureExceptionMock.mockClear()
 })
 
 afterEach(() => {
@@ -104,7 +98,6 @@ describe('getLiveStatus', () => {
       { error: expect.any(Error) },
       'getLiveStatus failed',
     )
-    expect(captureExceptionMock).toHaveBeenCalledWith(expect.any(Error))
   })
 
   it('returns live: false when the streams payload is malformed', async () => {
@@ -128,7 +121,6 @@ describe('getLiveStatus', () => {
 
     await expect(getLiveStatus()).resolves.toEqual({ live: false })
     expect(loggerErrorMock).toHaveBeenCalled()
-    expect(captureExceptionMock).toHaveBeenCalled()
   })
 
   it('sends client credentials in the token request body, never the URL', async () => {

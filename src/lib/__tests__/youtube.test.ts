@@ -18,14 +18,9 @@ const COVERS_PLAYLIST_ID = 'PLcoversplaylist'
 // youtube.ts's internal import and the test's assertions target different
 // instances.
 const loggerErrorMock = vi.fn()
-const captureExceptionMock = vi.fn()
 
 vi.mock('@/lib/logger', () => ({
   logger: { error: loggerErrorMock },
-}))
-
-vi.mock('@sentry/nextjs', () => ({
-  captureException: captureExceptionMock,
 }))
 
 function stubYoutubeEnv(coversPlaylistId?: string): void {
@@ -70,7 +65,6 @@ function snippetItem(overrides: {
 
 beforeEach(() => {
   loggerErrorMock.mockClear()
-  captureExceptionMock.mockClear()
 })
 
 afterEach(() => {
@@ -149,7 +143,6 @@ describe('getLatestVideos', () => {
       { error: expect.any(Error) },
       'getLatestVideos failed',
     )
-    expect(captureExceptionMock).toHaveBeenCalledWith(expect.any(Error))
   })
 
   it('returns [] when the playlistItems payload is malformed', async () => {
@@ -160,7 +153,6 @@ describe('getLatestVideos', () => {
 
     await expect(getLatestVideos()).resolves.toEqual([])
     expect(loggerErrorMock).toHaveBeenCalled()
-    expect(captureExceptionMock).toHaveBeenCalled()
   })
 })
 
@@ -258,6 +250,5 @@ describe('getCoverVideos', () => {
       { error: expect.any(Error) },
       'getCoverVideos failed',
     )
-    expect(captureExceptionMock).toHaveBeenCalledWith(expect.any(Error))
   })
 })
